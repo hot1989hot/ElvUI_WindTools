@@ -352,7 +352,10 @@ options.font = {
                 tip = {
                     order = 1,
                     type = "description",
-                    name = format(L["It only works when you enable the skin (%s)."], format("%s - %s", L["Blizzard"], L["Loot"]))
+                    name = format(
+                        L["It only works when you enable the skin (%s)."],
+                        format("%s - %s", L["Blizzard"], L["Loot"])
+                    )
                 },
                 name = {
                     order = 2,
@@ -1143,12 +1146,6 @@ options.addons = {
             addonName = "Immersion",
             addonskinsKey = "Immersion"
         },
-        meetingStone = {
-            order = 10,
-            type = "toggle",
-            name = L["NetEase Meeting Stone"],
-            addonName = {"MeetingStone", "MeetingStonePlus"}
-        },
         myslot = {
             order = 10,
             type = "toggle",
@@ -1199,12 +1196,18 @@ options.addons = {
             addonName = "RaiderIO",
             addonskinsKey = "RaiderIO"
         },
-        -- rematch = {
-        --     order = 10,
-        --     type = "toggle",
-        --     name = L["Rematch"],
-        --     addonName = "Rematch"
-        -- },
+        rareScanner = {
+            order = 10,
+            type = "toggle",
+            name = L["RareScanner"],
+            addonName = "RareScanner"
+        },
+        simpleAddonManager = {
+            order = 10,
+            type = "toggle",
+            name = L["Simple Addon Manager"],
+            addonName = "SimpleAddonManager",
+        },
         simulationcraft = {
             order = 10,
             type = "toggle",
@@ -2801,6 +2804,22 @@ options.bigWigsSkin = {
                             type = "range",
                             min = 5,
                             max = 60,
+                            step = 1
+                        },
+                        offsetX = {
+                            order = 4,
+                            name = L["X-Offset"],
+                            type = "range",
+                            min = -100,
+                            max = 100,
+                            step = 1
+                        },
+                        offsetY = {
+                            order = 5,
+                            name = L["Y-Offset"],
+                            type = "range",
+                            min = -100,
+                            max = 100,
                             step = 1
                         }
                     }
