@@ -14,7 +14,7 @@ local tostring = tostring
 local wipe = wipe
 
 local GetLocale = GetLocale
-local GetMaxLevelForPlayerExpansion = GetMaxLevelForPlayerExpansion
+local GetMaxPlayerLevel = GetMaxPlayerLevel
 local InCombatLockdown = InCombatLockdown
 local IsAddOnLoaded = IsAddOnLoaded
 
@@ -28,7 +28,7 @@ W.Title = L["WindTools"]
 W.PlainTitle = gsub(W.Title, "|c........([^|]+)|r", "%1")
 W.Locale = GetLocale()
 W.ChineseLocale = strsub(W.Locale, 0, 2) == "zh"
-W.MaxLevelForPlayerExpansion = GetMaxLevelForPlayerExpansion()
+W.GetMaxPlayerLevel = GetMaxPlayerLevel()
 W.SupportElvUIVersion = 13.20
 W.ClassColor = _G.RAID_CLASS_COLORS[E.myclass]
 
