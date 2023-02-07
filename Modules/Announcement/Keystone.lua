@@ -1,4 +1,5 @@
 local W, F, E, L = unpack(select(2, ...))
+if not E.Retail then return end
 local A = W:GetModule("Announcement")
 
 local gsub = gsub

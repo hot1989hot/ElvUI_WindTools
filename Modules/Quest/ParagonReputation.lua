@@ -1,4 +1,5 @@
 local W, F, E, L = unpack(select(2, ...))
+if not E.Retail then return end
 local PR = W:NewModule("ParagonReputation", "AceHook-3.0", "AceEvent-3.0")
 local S = W.Modules.Skins
 

@@ -420,11 +420,14 @@ function S:AlertFrames()
     -- 宠物 / 坐骑
     self:SecureHook(_G.NewPetAlertSystem, "setUpFunction", "SkinNewItemAlert")
     self:SecureHook(_G.NewMountAlertSystem, "setUpFunction", "SkinNewItemAlert")
-    self:SecureHook(_G.NewToyAlertSystem, "setUpFunction", "SkinNewItemAlert")
+    if E.Retail then 
+        self:SecureHook(_G.NewToyAlertSystem, "setUpFunction", "SkinNewItemAlert")
 
-    -- 其它
-    self:SecureHook(_G.EntitlementDeliveredAlertSystem, "setUpFunction", "SkinAlert")
-    self:SecureHook(_G.RafRewardDeliveredAlertSystem, "setUpFunction", "SkinRafRewardDeliveredAlert")
+        -- 其它
+        self:SecureHook(_G.EntitlementDeliveredAlertSystem, "setUpFunction", "SkinAlert")
+        self:SecureHook(_G.RafRewardDeliveredAlertSystem, "setUpFunction", "SkinRafRewardDeliveredAlert")
+    end
+
 end
 
 S:AddCallback("AlertFrames")

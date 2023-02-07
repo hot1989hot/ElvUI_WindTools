@@ -36,6 +36,10 @@ function A:CHAT_MSG_GUILD(event, ...)
     self:KeystoneLink(event, ...)
 end
 
+function A:CHAT_MSG_SAY(event)
+    alert("Test")
+end
+
 function A:COMBAT_LOG_EVENT_UNFILTERED()
     -- 参数列表
     -- https://wow.gamepedia.com/COMBAT_LOG_EVENT#Base_Parameters

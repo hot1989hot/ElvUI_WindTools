@@ -75,7 +75,7 @@ end
     @return {string} 频道
 ]]
 function A:GetChannel(channelDB)
-    if
+    if E.Retail and
         (IsPartyLFG() or IsInGroup(LE_PARTY_CATEGORY_INSTANCE) or IsInRaid(LE_PARTY_CATEGORY_INSTANCE)) and
             channelDB.instance
      then

@@ -22,7 +22,7 @@ Libraries\Load_Libraries.xml
 Initialize.lua
 Locales\Load_Locales.xml
 Media\Load_Media.xml
-Settings\Load_Settings.xml
-Core\Load_Core_Wrath.xml
-Modules\Load_Modules_Wrath.xml
+Settings\Load_Settings_Wrath.xml
+Core\Load_Core.xml
+Modules\Load_Modules.xml
 Options\Load_Options.xml

@@ -12,15 +12,15 @@ function S:WorldMapFrame()
     self:CreateBackdropShadow(_G.WorldMapFrame)
 
     local QuestScrollFrame = _G.QuestScrollFrame
-    if QuestScrollFrame.Background then
+    if E.Retail and QuestScrollFrame.Background then
         QuestScrollFrame.Background:Kill()
     end
-    if QuestScrollFrame.DetailFrame and QuestScrollFrame.DetailFrame.backdrop then
+    if E.Retail and QuestScrollFrame.DetailFrame and QuestScrollFrame.DetailFrame.backdrop then
         QuestScrollFrame.DetailFrame.backdrop:SetTemplate("Transparent")
     end
 
     local QuestMapFrame = _G.QuestMapFrame
-    if QuestMapFrame.DetailsFrame then
+    if E.Retail and QuestMapFrame.DetailsFrame then
         if QuestMapFrame.DetailsFrame.backdrop then
             QuestMapFrame.DetailsFrame.backdrop:SetTemplate("Transparent")
         end
@@ -30,14 +30,15 @@ function S:WorldMapFrame()
             QuestMapFrame.DetailsFrame.RewardsFrame:CreateBackdrop("Transparent")
         end
     end
-
-    hooksecurefunc(
-        _G.QuestSessionManager,
-        "NotifyDialogShow",
-        function(_, dialog)
-            self:CreateBackdropShadow(dialog)
-        end
-    )
+    if E.Retail then
+        hooksecurefunc(
+            _G.QuestSessionManager,
+            "NotifyDialogShow",
+            function(_, dialog)
+                self:CreateBackdropShadow(dialog)
+            end
+        )
+    end
 end
 
 S:AddCallback("WorldMapFrame")

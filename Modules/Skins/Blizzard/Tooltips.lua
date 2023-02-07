@@ -76,7 +76,7 @@ function S:TooltipFrames()
 
     self:SecureHook(TT, "SetStyle", "TT_SetStyle")
     self:SecureHook(TT, "GameTooltip_SetDefaultAnchor", "TT_GameTooltip_SetDefaultAnchor")
-    self:SecureHook(_G.QueueStatusFrame, "Update", "CreateShadow")
+    if E.Retail then self:SecureHook(_G.QueueStatusFrame, "Update", "CreateShadow") end
     self:SecureHook(_G.GameTooltip, "Show", "StyleTooltipsIcons")
 end
 

@@ -15,4 +15,5 @@
 	<Script file='Thanks.lua'/>
 	<Script file='ThreatTransfer.lua'/>
 	<Script file='Utility.lua'/>
+	<Script file='test.lua'/>
 </Ui>

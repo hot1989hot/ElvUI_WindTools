@@ -31,7 +31,7 @@ function S:LossOfControlFrame()
         return
     end
 
-    S:SecureHook("LossOfControlFrame_SetUpDisplay", "Blizzard_LossOfControlFrame_SetUpDisplay")
+    if E.Retail then S:SecureHook("LossOfControlFrame_SetUpDisplay", "Blizzard_LossOfControlFrame_SetUpDisplay") end
 end
 
 S:AddCallback("LossOfControlFrame")

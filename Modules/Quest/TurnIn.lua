@@ -596,14 +596,14 @@ function TI:Initialize()
 
     self:RegisterEvent("GOSSIP_CONFIRM")
     self:RegisterEvent("GOSSIP_SHOW")
-    self:RegisterEvent("PLAYER_LOGIN", "AttemptAutoComplete")
+    if E.Retail then self:RegisterEvent("PLAYER_LOGIN", "AttemptAutoComplete") end
     self:RegisterEvent("QUEST_ACCEPTED")
     self:RegisterEvent("QUEST_ACCEPT_CONFIRM")
     self:RegisterEvent("QUEST_COMPLETE")
     self:RegisterEvent("QUEST_DETAIL")
     self:RegisterEvent("QUEST_GREETING")
     self:RegisterEvent("QUEST_ITEM_UPDATE")
-    self:RegisterEvent("QUEST_LOG_UPDATE", "AttemptAutoComplete")
+    if E.Retail then self:RegisterEvent("QUEST_LOG_UPDATE", "AttemptAutoComplete") end
     self:RegisterEvent("QUEST_PROGRESS")
 
     self.initialized = true

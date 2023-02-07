@@ -44,15 +44,28 @@ function S:FriendsFrame()
         return
     end
 
-    local frames = {
-        _G.FriendsFrame,
-        _G.FriendsFriendsFrame,
-        _G.AddFriendFrame,
-        _G.RecruitAFriendFrame.SplashFrame,
-        _G.RecruitAFriendRewardsFrame,
-        _G.RecruitAFriendRecruitmentFrame,
-        _G.FriendsFrameBattlenetFrame.BroadcastFrame
-    }
+    local frames
+
+    if E.Retail then
+        frames = {
+            _G.FriendsFrame,
+            _G.FriendsFriendsFrame,
+            _G.AddFriendFrame,
+            _G.RecruitAFriendFrame.SplashFrame,
+            _G.RecruitAFriendRewardsFrame,
+            _G.RecruitAFriendRecruitmentFrame,
+            _G.FriendsFrameBattlenetFrame.BroadcastFrame
+        }
+    else 
+        frames = {
+            _G.FriendsFrame,
+            _G.FriendsFriendsFrame,
+            _G.AddFriendFrame,
+            _G.RecruitAFriendRewardsFrame,
+            _G.RecruitAFriendRecruitmentFrame,
+            _G.FriendsFrameBattlenetFrame.BroadcastFrame
+        }
+    end
 
     for _, frame in pairs(frames) do
         self:CreateShadow(frame)

@@ -133,14 +133,17 @@ function S:ElvUI_ActionBars()
     end
 
     -- Extra action bar
-    self:SecureHook(_G.ZoneAbilityFrame, "UpdateDisplayedZoneAbilities", "SkinZoneAbilities")
+    if E.Retail then
+        self:SecureHook(_G.ZoneAbilityFrame, "UpdateDisplayedZoneAbilities", "SkinZoneAbilities")
 
-    for i = 1, _G.ExtraActionBarFrame:GetNumChildren() do
-        local button = _G["ExtraActionButton" .. i]
-        if button then
-            self:CreateShadow(button)
+        for i = 1, _G.ExtraActionBarFrame:GetNumChildren() do
+            local button = _G["ExtraActionButton" .. i]
+            if button then
+                self:CreateShadow(button)
+            end
         end
     end
+
 
     -- Vehicle leave button
     do
@@ -178,9 +181,11 @@ function S:ElvUI_ActionBars()
     end
 
     -- Extra action bar
-    for i = 1, _G.ExtraActionBarFrame:GetNumChildren() do
-        local button = _G["ExtraActionButton" .. i]
-        self:CreateBackdropShadow(button.backdrop, true)
+    if E.Retail then
+        for i = 1, _G.ExtraActionBarFrame:GetNumChildren() do
+            local button = _G["ExtraActionButton" .. i]
+            self:CreateBackdropShadow(button.backdrop, true)
+        end
     end
 
     -- Flyout

@@ -38,7 +38,9 @@ function S:LookingForGroupFrames()
     end
 
     -- if no party found, the button also need skin
-    S:ESProxy("HandleButton", _G.LFGListFrame.SearchPanel.ScrollBox.StartGroupButton)
+    if E.Retail then 
+        S:ESProxy("HandleButton", _G.LFGListFrame.SearchPanel.ScrollBox.StartGroupButton) 
+    end
 end
 
 S:AddCallback("LookingForGroupFrames")

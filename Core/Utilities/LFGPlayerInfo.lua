@@ -10,7 +10,7 @@ local tinsert = tinsert
 local tonumber = tonumber
 local tostring = tostring
 
-local GetSpecializationInfoForClassID = GetSpecializationInfoForClassID
+local GetSpecializationInfoForClassID = E.Retail and GetSpecializationInfoForClassID
 local C_LFGList_GetSearchResultInfo = C_LFGList.GetSearchResultInfo
 local C_LFGList_GetSearchResultMemberInfo = C_LFGList.GetSearchResultMemberInfo
 
@@ -48,6 +48,18 @@ function U.GetColoredRoleName(role)
     return coloredRoleName[role]
 end
 
+-- TODO: 
+-- local specName = ""
+-- local pointCount = 0
+-- for i = 1, GetNumTalentTabs() do
+--     local name, texture, pointsSpent, fileName = GetTalentTabInfo(i)
+--     if pointsSpent > pointCount then
+--         pointCount = pointsSpent
+--         specName = name
+--     end
+-- end
+
+
 local classIconStyle = "flat"
 local classFileToID = {} -- { ["WARRIOR"] = 1 }
 local localizedSpecNameToID = {} -- { ["Protection"] = 73 }
@@ -70,7 +82,7 @@ for classID = 1, 13 do
 
         for specIndex = 1, 4 do
             -- Druid has the max amount of specs, which is 4
-            local specId, localizedSpecName, _, icon = GetSpecializationInfoForClassID(classID, specIndex)
+            local specId, localizedSpecName, _, icon = E.Retail and GetSpecializationInfoForClassID(classID, specIndex)
             if specId and localizedSpecName and icon then
                 localizedSpecNameToID[classFile][localizedSpecName] = specId
                 localizedSpecNameToIcon[classFile][localizedSpecName] = icon
