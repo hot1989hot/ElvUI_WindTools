@@ -2671,93 +2671,94 @@ options.resetInstance = {
         }
     }
 }
-
-options.keystone = {
-    order = 13,
-    type = "group",
-    name = L["Keystone"],
-    get = function(info)
-        return E.db.WT.announcement[info[#info - 1]][info[#info]]
-    end,
-    set = function(info, value)
-        E.db.WT.announcement[info[#info - 1]][info[#info]] = value
-    end,
-    args = {
-        desc = {
-            order = 1,
-            type = "group",
-            inline = true,
-            name = L["Description"],
-            args = {
-                feature = {
-                    order = 1,
-                    type = "description",
-                    name = L["Announce your mythic keystone."],
-                    fontSize = "medium"
+if E.Retail then
+    options.keystone = {
+        order = 13,
+        type = "group",
+        name = L["Keystone"],
+        get = function(info)
+            return E.db.WT.announcement[info[#info - 1]][info[#info]]
+        end,
+        set = function(info, value)
+            E.db.WT.announcement[info[#info - 1]][info[#info]] = value
+        end,
+        args = {
+            desc = {
+                order = 1,
+                type = "group",
+                inline = true,
+                name = L["Description"],
+                args = {
+                    feature = {
+                        order = 1,
+                        type = "description",
+                        name = L["Announce your mythic keystone."],
+                        fontSize = "medium"
+                    }
                 }
-            }
-        },
-        enable = {
-            order = 2,
-            type = "toggle",
-            name = L["Enable"]
-        },
-        command = {
-            order = 3,
-            type = "toggle",
-            name = L["!keys Command"],
-            desc = L["Send the keystone to party or guild chat when someone use !keys command."]
-        },
-        betterAlign = {
-            order = 4,
-            type = "description",
-            name = " ",
-            width = "full"
-        },
-        text = {
-            order = 5,
-            type = "input",
-            name = L["Text"],
-            desc = FormatDesc("%keystone%", L["Keystone"]),
-            width = 2
-        },
-        useDefaultText = {
-            order = 6,
-            type = "execute",
-            func = function(info)
-                E.db.WT.announcement.keystone.text = P.announcement.keystone.text
-            end,
-            name = L["Default Text"]
-        },
-        channel = {
-            order = 7,
-            name = L["Channel"],
-            type = "group",
-            inline = true,
-            get = function(info)
-                return E.db.WT.announcement.keystone[info[#info - 1]][info[#info]]
-            end,
-            set = function(info, value)
-                E.db.WT.announcement.keystone[info[#info - 1]][info[#info]] = value
-            end,
-            args = {
-                party = {
-                    order = 1,
-                    name = L["In Party"],
-                    type = "select",
-                    values = {
-                        NONE = L["None"],
-                        SELF = L["Self (Chat Frame)"],
-                        EMOTE = L["Emote"],
-                        PARTY = L["Party"],
-                        YELL = L["Yell"],
-                        SAY = L["Say"]
+            },
+            enable = {
+                order = 2,
+                type = "toggle",
+                name = L["Enable"]
+            },
+            command = {
+                order = 3,
+                type = "toggle",
+                name = L["!keys Command"],
+                desc = L["Send the keystone to party or guild chat when someone use !keys command."]
+            },
+            betterAlign = {
+                order = 4,
+                type = "description",
+                name = " ",
+                width = "full"
+            },
+            text = {
+                order = 5,
+                type = "input",
+                name = L["Text"],
+                desc = FormatDesc("%keystone%", L["Keystone"]),
+                width = 2
+            },
+            useDefaultText = {
+                order = 6,
+                type = "execute",
+                func = function(info)
+                    E.db.WT.announcement.keystone.text = P.announcement.keystone.text
+                end,
+                name = L["Default Text"]
+            },
+            channel = {
+                order = 7,
+                name = L["Channel"],
+                type = "group",
+                inline = true,
+                get = function(info)
+                    return E.db.WT.announcement.keystone[info[#info - 1]][info[#info]]
+                end,
+                set = function(info, value)
+                    E.db.WT.announcement.keystone[info[#info - 1]][info[#info]] = value
+                end,
+                args = {
+                    party = {
+                        order = 1,
+                        name = L["In Party"],
+                        type = "select",
+                        values = {
+                            NONE = L["None"],
+                            SELF = L["Self (Chat Frame)"],
+                            EMOTE = L["Emote"],
+                            PARTY = L["Party"],
+                            YELL = L["Yell"],
+                            SAY = L["Say"]
+                        }
                     }
                 }
             }
         }
     }
-}
+end
 
 options.general = {
     order = 14,
