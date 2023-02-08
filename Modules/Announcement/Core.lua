@@ -145,7 +145,14 @@ function A:Initialize()
         E.db.general.interruptAnnounce = "NONE"
     end
 
-    for _, event in pairs(self.EventList) do
+    local eventList
+    if E.Retail then 
+        eventList = self.EventList 
+    else
+        eventList = self.EventListWrath
+    end
+
+    for _, event in pairs(eventList) do
         A:RegisterEvent(event)
     end
 
