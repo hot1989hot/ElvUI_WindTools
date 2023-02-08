@@ -29,7 +29,6 @@ A.EventListWrath = {
     "PLAYER_ENTERING_WORLD",
     "QUEST_LOG_UPDATE",
 }
-print("EVENTS")
 -- CHAT_MSG_SYSTEM: text, playerName, languageName, channelName, playerName2, specialFlags, zoneChannelID, channelIndex, channelBaseName, unused, lineID, guid, bnSenderID, isMobile, isSubtitle, hideSenderInLetterbox, supressRaidIcons
 function A:CHAT_MSG_SYSTEM(event, text)
     local data = {}
