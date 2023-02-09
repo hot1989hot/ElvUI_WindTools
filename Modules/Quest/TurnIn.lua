@@ -416,11 +416,11 @@ function TI:QUEST_DETAIL()
         return
     end
 
-    if QuestIsFromAreaTrigger() then
+    if E.Retail and QuestIsFromAreaTrigger() then
         AcceptQuest()
-    elseif QuestGetAutoAccept() then
+    elseif E.Retail and QuestGetAutoAccept() then
         AcknowledgeAutoAcceptQuest()
-    elseif not C_QuestLog_IsQuestTrivial(GetQuestID()) or IsTrackingHidden() then
+    elseif not (E.Retail and C_QuestLog_IsQuestTrivial(GetQuestID())) or IsTrackingHidden() then
         AcceptQuest()
     end
 end

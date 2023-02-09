@@ -7,7 +7,7 @@ local strsplit = strsplit
 
 local GetSpellLink = GetSpellLink
 local IsInInstance = IsInInstance
-local IsPartyLFG = IsPartyLFG
+local IsPartyLFG = E.Retail and IsPartyLFG
 local UnitGUID = UnitGUID
 
 function A:Dispel(sourceGUID, sourceName, destName, spellId, extraSpellId)
