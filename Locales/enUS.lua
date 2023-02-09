@@ -1443,3 +1443,4 @@ L["says"] = true
 L["takes 3s"] = true
 L["whispers"] = true
 L["yells"] = true
+L["QUEST_GROUP"] = "GROUP"

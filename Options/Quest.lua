@@ -4,7 +4,7 @@ local LSM = E.Libs.LSM
 local TI = W:GetModule("TurnIn")
 local SB = W:GetModule("SwitchButtons")
 local OT = W:GetModule("ObjectiveTracker")
-local PR = W:GetModule("ParagonReputation")
+local PR = E.Retail and W:GetModule("ParagonReputation")
 
 local pairs = pairs
 local tonumber = tonumber

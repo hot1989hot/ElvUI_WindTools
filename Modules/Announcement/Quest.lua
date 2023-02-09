@@ -11,9 +11,9 @@ local GetNumQuestLeaderBoards = GetNumQuestLeaderBoards
 local GetQuestLink = GetQuestLink
 local GetQuestLogLeaderBoard = GetQuestLogLeaderBoard
 
-local C_QuestLog_GetInfo = C_QuestLog.GetInfo
-local C_QuestLog_GetNumQuestLogEntries = C_QuestLog.GetNumQuestLogEntries
-local C_QuestLog_GetQuestTagInfo = C_QuestLog.GetQuestTagInfo
+local C_QuestLog_GetInfo = C_QuestLog.GetInfo or GetQuestLogTitle -- C_QuestLog.GetInfo
+local C_QuestLog_GetNumQuestLogEntries = C_QuestLog.GetNumQuestLogEntries or GetNumQuestLogEntries
+local C_QuestLog_GetQuestTagInfo = C_QuestLog.GetQuestTagInfo or GetQuestTagInfo
 
 local lastList
 
@@ -21,19 +21,52 @@ local ignoreTagIDs = {
 	[128] = true, -- 特使任務
 	[265] = true -- 隱藏任務
 }
-
 local function GetQuests()
 	local quests = {}
 
 	for questIndex = 1, C_QuestLog_GetNumQuestLogEntries() do
-		local questInfo = C_QuestLog_GetInfo(questIndex)
+		local questInfo
+		if E.Retail then
+			questInfo = C_QuestLog_GetInfo(questIndex)
+		else
+			questInfo = {}
+			questInfo.title,
+			questInfo.level,
+			questInfo.suggestedGroup,
+			questInfo.isHeader,
+			questInfo.isCollapsed,
+			questInfo.isComplete,
+			questInfo.frequency,
+			questInfo.questID,
+			questInfo.startEvent,
+			questInfo.displayQuestID,
+			questInfo.isOnMap,
+			questInfo.hasLocalPOI,
+			questInfo.isTask,
+			questInfo.isBounty,
+			questInfo.isStory,
+			questInfo.isHidden,
+			questInfo.isScaling  = C_QuestLog_GetInfo(questIndex)
+		end
+
 		if questInfo then
 			local skip = questInfo.isHeader or questInfo.isBounty or questInfo.isHidden
 			-- isHeader: 任务分类(比如, "高嶺-高嶺部族" 任务, "高嶺"要排除掉)
 			-- isBounty: 箱子任务(比如, "夜落精灵" 任务)
 			-- isHidden: 自动接取的每周任务(比如, "征服者的獎勵" 每周 PvP 任务)
-
-			local tagInfo = C_QuestLog_GetQuestTagInfo(questInfo.questID)
+			local tagInfo
+			if E.Retail then
+				tagInfo = C_QuestLog_GetQuestTagInfo(questInfo.questID)
+			else
+				tagInfo = {}
+				tagInfo.tagID,
+				tagInfo.tagName,
+				tagInfo.worldQuestType,
+				tagInfo.rarity,
+				tagInfo.isElite,
+				tagInfo.tradeskillLineIndex,
+				tagInfo.displayTimeLeft = C_QuestLog_GetQuestTagInfo(questInfo.questID)
+			end
 
 			if tagInfo and ignoreTagIDs[tagInfo.tagID] then
 				skip = true
@@ -141,7 +174,7 @@ function A:Quest()
 			extraInfoColored = extraInfoColored .. F.CreateColorString("[" .. _G.WEEKLY .. "]", config.weekly.color)
 		end
 
-		if questCache.suggestedGroup > 1 and config.suggestedGroup.enable then -- 多人
+		if (E.Retail and questCache.suggestedGroup > 1) or (E.Wrath and questCache.suggestedGroup == L["QUEST_GROUP"]) and config.suggestedGroup.enable then -- 多人
 			extraInfo = extraInfo .. "[" .. questCache.suggestedGroup .. "]"
 			extraInfoColored =
 				extraInfoColored .. F.CreateColorString("[" .. questCache.suggestedGroup .. "]", config.suggestedGroup.color)
@@ -210,9 +243,10 @@ function A:Quest()
 
 		if needAnnounce then
 			local message = extraInfo .. mainInfo
-			if not E.db.WT.quest.switchButtons.enable or not config.paused then
+			print(self:GetChannel(config.channel))
+			-- if not E.db.WT.quest.switchButtons.enable or not config.paused then
 				self:SendMessage(message, self:GetChannel(config.channel))
-			end
+			-- end
 
 			if not isDetailInfo or self.db.quest.disableBlizzard then -- only show details if system do not show that
 				local messageColored = extraInfoColored .. mainInfoColored
