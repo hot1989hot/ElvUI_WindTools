@@ -40,6 +40,7 @@ local BotList = {
 }
 
 local FeastList = {
+    [57423] = true,  -- 鱼肉筵席 WLK
     [104958] = true, -- 熊貓人盛宴
     [126492] = true, -- 燒烤盛宴
     [126494] = true, -- 豪華燒烤盛宴
@@ -166,7 +167,10 @@ function A:Utility(event, sourceName, spellId)
     sourceName = sourceName:gsub("%-[^|]+", "")
 
     if event == "SPELL_CAST_SUCCESS" then
-        if TryAnnounce(spellId, sourceName, 190336) then
+        if E.Retail and TryAnnounce(spellId, sourceName, 190336) then
+            return
+        end -- 召喚餐點桌
+        if not E.Retail and TryAnnounce(spellId, sourceName, 58659) then
             return
         end -- 召喚餐點桌
         if TryAnnounce(spellId, sourceName, nil, FeastList, "feasts") then
@@ -195,6 +199,9 @@ function A:Utility(event, sourceName, spellId)
         if TryAnnounce(spellId, sourceName, 29893) then
             return
         end -- 靈魂之井
+        if TryAnnounce(spellId, sourceName, 58887) then
+            return
+        end -- 靈魂之井 2
         if TryAnnounce(spellId, sourceName, nil, ToyList, "toys") then
             return
         end -- 玩具
