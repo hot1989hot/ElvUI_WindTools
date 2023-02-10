@@ -303,7 +303,7 @@ local ButtonTypes = {
         icon = W.Media.Icons.barEncounterJournal,
         macro = {
             LeftButton = "/click EJMicroButton",
-            RightButton = "/run WeeklyRewards_LoadUI(); WeeklyRewardsFrame:Show()"
+            RightButton = "/run WeeklyRewards_ShowUI()"
         },
         tooltips = {
             LeftButtonIcon .. " " .. L["Encounter Journal"],
@@ -1366,8 +1366,8 @@ function GB:Initialize()
     end
 
     for name, vDT in pairs(VirtualDT) do
-        if DT.RegisteredDataTexts[name] and DT.RegisteredDataTexts[name].colorUpdate then
-            DT.RegisteredDataTexts[name].colorUpdate(vDT, E.media.hexvaluecolor)
+        if DT.RegisteredDataTexts[name] and DT.RegisteredDataTexts[name].applySettings then
+            DT.RegisteredDataTexts[name].applySettings(vDT, E.media.hexvaluecolor)
         end
     end
 
