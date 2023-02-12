@@ -40,7 +40,7 @@ local BotList = {
 }
 
 local FeastList = {
-    [57423] = true,  -- 鱼肉筵席 WLK
+    [57426] = true,  -- 鱼肉筵席 WLK
     [104958] = true, -- 熊貓人盛宴
     [126492] = true, -- 燒烤盛宴
     [126494] = true, -- 豪華燒烤盛宴
