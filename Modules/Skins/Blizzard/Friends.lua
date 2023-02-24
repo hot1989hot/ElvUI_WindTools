@@ -44,6 +44,9 @@ function S:FriendsFrame()
         return
     end
 
+    _G.FriendsFrameBattlenetFrame.UnavailableInfoFrame:ClearAllPoints()
+    _G.FriendsFrameBattlenetFrame.UnavailableInfoFrame:Point("TOPLEFT", _G.FriendsFrame, "TOPRIGHT", 3, -1)
+
     local frames
 
     if E.Retail then
@@ -54,7 +57,9 @@ function S:FriendsFrame()
             _G.RecruitAFriendFrame.SplashFrame,
             _G.RecruitAFriendRewardsFrame,
             _G.RecruitAFriendRecruitmentFrame,
-            _G.FriendsFrameBattlenetFrame.BroadcastFrame
+            _G.FriendsFrameBattlenetFrame.UnavailableInfoFrame,
+            _G.FriendsFrameBattlenetFrame.BroadcastFrame,
+            _G.QuickJoinRoleSelectionFrame
         }
     else 
         frames = {
@@ -63,7 +68,9 @@ function S:FriendsFrame()
             _G.AddFriendFrame,
             _G.RecruitAFriendRewardsFrame,
             _G.RecruitAFriendRecruitmentFrame,
-            _G.FriendsFrameBattlenetFrame.BroadcastFrame
+            _G.FriendsFrameBattlenetFrame.UnavailableInfoFrame,
+            _G.FriendsFrameBattlenetFrame.BroadcastFrame,
+            _G.QuickJoinRoleSelectionFrame
         }
     end
 
